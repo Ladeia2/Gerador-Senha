@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Gabarito:wght@400;600&family=M+PLUS+Rounded+1c:wght@500&family=Nunito+Sans:opsz,wght@6..12,200;6..12,500;6..12,900&family=Poppins:ital,wght@0,100;0,200;0,400;0,500;0,600;0,700;0,800;1,100;1,200;1,600;1,700&family=Ubuntu&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+        integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <title>Gerador de senha</title>
+</head>
+<body>
+    <section > <!-- container -->
+        <h1>Gerador de <br><span>Senha Aleatorio</span></h1>
+
+        <div class="diplay">
+            <input type="text" name="senha" id="password" placeholder="Senha Gerada">
+            <img onclick="copyPassword()" src="images/copy.png" alt="seach">
+        </div>
+
+        <button onclick="createpPassword()"><img src="images/generate.png" alt="button"> Gerador Senha </button>
+    </section>
+
+    <script>
+        const passwordBox = document.getElementById("password")
+        const lenght = 12;
+
+        const upperCase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+        const lowerCase = "abcdefghijklmnopqrstuvwxyz"
+        const number = "0123456789"
+        const symbol = "*&$"
+
+        const alChars = upperCase + lowerCase + number + symbol
+        
+        function createpPassword(){
+            let password = ""
+            password +=upperCase[Math.floor(Math.random()*upperCase.length)]
+            password +=lowerCase[Math.floor(Math.random()*lowerCase.length)]
+            password +=number[Math.floor(Math.random()*number.length)]
+            password +=symbol[Math.floor(Math.random()*symbol.length)]
+
+            while(lenght>password.length){
+                password +=alChars[Math.floor(Math.random()*alChars.length)]
+            }
+
+        passwordBox.value = password
+        
+        }
+     /* função para copiar */
+    function copyPassword(){
+        passwordBox.select()
+        document.execCommand("copy")
+    }
+
+
+
+    </script>
+
+</body>
+</html>
